@@ -1,3 +1,11 @@
 /* =========
 Your custom styles go here
  ========= */
+.iconfont{
+ font-size: 32px;
+}
+/** tabbar start **/
+.icon-rili{
+ font-size: 28px!important;
+}
+/** tabbar end **/

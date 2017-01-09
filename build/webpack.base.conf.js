@@ -20,8 +20,8 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue', '.json'],
-    fallback: [path.join(__dirname, '../node_modules')],
+    extensions: ['', '.js', '.vue', '.json'],//用于指明程序自动补全识别哪些后缀
+    fallback: [path.join(__dirname, '../node_modules')],//当没找到模块时从这里面找
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, '../src'),
@@ -41,7 +41,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        include: projectRoot,
+        include: projectRoot,//An array of paths or files where the imported files will be transformed by the loader
         exclude: /node_modules/
       },
       {
