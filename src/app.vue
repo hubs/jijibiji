@@ -5,58 +5,6 @@
         <!-- Statusbar -->
         <f7-statusbar></f7-statusbar>
 
-        <!-- Left Panel -->
-        <f7-panel left reveal layout="dark">
-            <f7-view id="left-panel-view" navbar-through :dynamic-navbar="true">
-                <f7-navbar title="Left Panel"></f7-navbar>
-                <f7-pages>
-                    <f7-page>
-                        <f7-block inner>
-                            <p>Left panel content goes here</p>
-                        </f7-block>
-                        <f7-block-title>Load page in panel</f7-block-title>
-                        <f7-list>
-                            <f7-list-item link="/about/" title="About"></f7-list-item>
-                            <f7-list-item link="/form/" title="Form"></f7-list-item>
-                        </f7-list>
-                        <f7-block-title>Load page in main view</f7-block-title>
-                        <f7-list>
-                            <f7-list-item link="/about/" title="About" link-view="#main-view"
-                                          link-close-panel></f7-list-item>
-                            <f7-list-item link="/form/" title="Form" link-view="#main-view"
-                                          link-close-panel></f7-list-item>
-                        </f7-list>
-                    </f7-page>
-                </f7-pages>
-            </f7-view>
-        </f7-panel>
-
-        <!-- Right Panel -->
-        <f7-panel right cover layout="dark">
-            <f7-view id="right-panel-view" navbar-through :dynamic-navbar="true">
-                <f7-navbar title="Right Panel" sliding></f7-navbar>
-                <f7-pages>
-                    <f7-page>
-                        <f7-block>
-                            <p>Right panel content goes here</p>
-                        </f7-block>
-                        <f7-block-title>Load page in panel</f7-block-title>
-                        <f7-list>
-                            <f7-list-item link="/about/" title="About"></f7-list-item>
-                            <f7-list-item link="/form/" title="Form"></f7-list-item>
-                        </f7-list>
-                        <f7-block-title>Load page in main view</f7-block-title>
-                        <f7-list>
-                            <f7-list-item link="/about/" title="About" link-view="#main-view"
-                                          link-close-panel></f7-list-item>
-                            <f7-list-item link="/form/" title="Form" link-view="#main-view"
-                                          link-close-panel></f7-list-item>
-                        </f7-list>
-                    </f7-page>
-                </f7-pages>
-            </f7-view>
-        </f7-panel>
-
         <!-- Main Views -->
         <f7-views>
             <f7-view id="main-view" navbar-through :dynamic-navbar="true" main>
@@ -67,13 +15,20 @@
                     </f7-nav-left>
                     <f7-nav-center>{{title}}</f7-nav-center>
                     <f7-nav-right>
-                        <f7-link icon="iconfont icon-pan"></f7-link>
+                        <f7-link icon="iconfont icon-pan" @click="newRecord"></f7-link>
                     </f7-nav-right>
                 </f7-navbar>
                 <!-- Pages -->
                 <f7-pages>
                     <f7-page>
-                        <f7-block-title>Welcome to my App</f7-block-title>
+                        <f7-timeline sides>
+                            <f7-timeline-item day="21" month="DEC" inner content="Some text goes here"></f7-timeline-item>
+                            <f7-timeline-item day="22" month="DEC" inner content="Another text goes here"></f7-timeline-item>
+                            <f7-timeline-item day="22" month="DEC" inner content="Another text goes here"></f7-timeline-item>
+                            <f7-timeline-item day="22" month="DEC" inner content="Another text goes here"></f7-timeline-item>
+                            <f7-timeline-item day="22" month="DEC" inner content="Another text goes here"></f7-timeline-item>
+                        </f7-timeline>
+                       <!-- <f7-block-title>Welcome to my App</f7-block-title>
                         <f7-block inner>
                             <p>Duis sed erat ac eros ultrices pharetra id ut tellus. Praesent rhoncus enim ornare ipsum
                                 aliquet ultricies. Pellentesque sodales erat quis elementum sagittis.</p>
@@ -85,17 +40,6 @@
                             <f7-list-item link="/dynamic-route/blog/45/post/125/?foo=bar#about"
                                           title="Dynamic Route"></f7-list-item>
                         </f7-list>
-                        <f7-block-title>Side Panels</f7-block-title>
-                        <f7-block>
-                            <f7-grid>
-                                <f7-col width="50">
-                                    <f7-button open-panel="left">Left Panel</f7-button>
-                                </f7-col>
-                                <f7-col width="50">
-                                    <f7-button open-panel="right">Right Panel</f7-button>
-                                </f7-col>
-                            </f7-grid>
-                        </f7-block>
                         <f7-block-title>Modals</f7-block-title>
                         <f7-block>
                             <f7-grid>
@@ -106,15 +50,15 @@
                                     <f7-button open-login-screen="#login-screen">Login Screen</f7-button>
                                 </f7-col>
                             </f7-grid>
-                        </f7-block>
+                        </f7-block>-->
                     </f7-page>
                 </f7-pages>
 
 
                 <f7-toolbar tabbar labels bottom>
-                    <f7-link icon="iconfont icon-timeline1" tab-link href="/about" active></f7-link>
+                    <f7-link icon="iconfont icon-timeline1" tab-link href="/" active></f7-link>
                     <f7-link icon="iconfont icon-rili" tab-link href="/form"></f7-link>
-                    <f7-link icon="iconfont icon-icon15" tab-link></f7-link>
+                    <f7-link icon="iconfont icon-icon15" tab-link  href="/about"></f7-link>
                     <f7-link icon="iconfont icon-shezhi" tab-link></f7-link>
                 </f7-toolbar>
             </f7-view>
@@ -170,14 +114,25 @@
 
     </div>
 </template>
-
-<script type="es6">
+<style scoped>
+    .navbar-inner a{
+        color:#929292
+    }
+    .navbar-inner .center{
+        color:#007aff
+    }
+</style>
+<script type="text/babel">
     export default {
         data() {
             return {
-                show: false
+                title: '记记'
             };
+        },
+        methods:{
+            newRecord(){
+                console.log("Hello");
+            }
         }
-    };
-
+    }
 </script>

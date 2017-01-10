@@ -24,6 +24,8 @@ import Routes from './routes.js'
 // Import App Component
 import App from './app'
 
+import Const from './const'
+
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue);
 
