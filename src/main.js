@@ -26,22 +26,47 @@ import App from './app'
 
 import Const from './const'
 
+//vuex
+import store from "./store"
+
+
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue);
 
 // Init App
 new Vue({
   el: '#app',
+  store,
   template: '<app/>',
   // Init Framework7 by passing parameters here
   framework7: {
     root: '#app',
+    cache:false,
     /* Uncomment to enable Material theme: */
     // material: true,
     routes: Routes,
+/*    preroute: function (view, options) {
+      console.table(options)
+    }*/
+    swipePanel: 'left'
   },
   // Register App Component
   components: {
     app: App
+  },
+  mounted:function(){
+    window.f7.onPageAfterAnimation('somepage', function(){
+      console.log("HAHAH");
+      $$('.page-on-left').remove();
+    })
   }
 });
+/*var mySwiper = window.f7.swiper('.swiper-container', {
+  speed: 400,
+  spaceBetween: 100
+});*/
+/*var mySwiper = window.f7.swiper('.swiper-container', {
+  pagination: '.swiper-pagination',
+});*/
+
+//console.log('!!!', window.f7);
