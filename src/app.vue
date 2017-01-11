@@ -14,7 +14,7 @@
                     <f7-nav-left>
                         <f7-link icon="iconfont icon-xiangji1"></f7-link>
                     </f7-nav-left>
-                    <f7-nav-center>{{title}}</f7-nav-center>
+                    <f7-nav-center>记记</f7-nav-center>
                     <f7-nav-right>
                         <f7-link icon="iconfont icon-pan" @click="newRecord"></f7-link>
                     </f7-nav-right>
@@ -22,6 +22,11 @@
                 <!-- Pages -->
                 <f7-pages>
                     <f7-page name="timeline">
+                        <f7-block>您还没有记录任何回忆呢，快点击下面的按钮添加您的第一篇回忆吧！</f7-block>
+                        <div class="t-center">
+                            <f7-button  big fill icon='iconfont icon-pan btn-record'>留下回忆</f7-button>
+                        </div>
+
                         <f7-timeline sides>
                             <f7-timeline-item day="21" month="DEC" inner content="Some text goes here"></f7-timeline-item>
                             <f7-timeline-item day="22" month="DEC" inner content="Another text goes here"></f7-timeline-item>
@@ -44,7 +49,7 @@
                             <!-- FAB -->
                             <f7-fab>
                                 <!-- First icon to open Actions -->
-                                <f7-icon icon="icon-plus"></f7-icon>
+                                <f7-icon icon="icon-plus "></f7-icon>
                                 <!-- Second icon to close Actions -->
                                 <f7-icon icon="icon-close"></f7-icon>
                             </f7-fab>
@@ -62,6 +67,44 @@
                         <f7-link icon="iconfont icon-pan" @click="newRecord"></f7-link>
                     </f7-nav-right>
                 </f7-navbar>
+
+                <f7-page>
+
+                    <f7-timeline>
+
+                        <!-- With Item Elements -->
+                        <f7-timeline-item
+                                day="21"
+                                month="DEC"
+                                inner
+                                time="12:56"
+                                title="Item Title"
+                                subtitle="Item Subtitle"
+                                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor fugiat ipsam hic porro enim, accusamus perferendis, quas commodi alias quaerat eius nemo deleniti. Odio quasi quos quis iure, aperiam pariatur?"
+                        ></f7-timeline-item>
+
+                        <!-- With List -->
+                        <f7-timeline-item
+                                day="23"
+                                month="DEC"
+                        >
+                            <f7-list inset>
+                                <f7-list-item link="#" title="Item 1"></f7-list-item>
+                            </f7-list>
+                        </f7-timeline-item>
+
+                        <!-- With Card -->
+                        <f7-timeline-item
+                                day="24"
+                                month="DEC"
+                        >
+                            <f7-card title="Card Header" content="Card Content" footer="Card Footer"></f7-card>
+                        </f7-timeline-item>
+
+                    </f7-timeline>
+                </f7-page>
+
+
             </f7-view>
             <f7-view id="chat" tab>
                 <f7-navbar>
@@ -74,29 +117,7 @@
                     </f7-nav-right>
                 </f7-navbar>
 
-                <f7-timeline horizontal col="33" tablet-col="15">
-                    <!-- Year -->
-                    <f7-timeline-year title="2016">
-                        <!-- Month -->
-                        <f7-timeline-month title="November">
-                            <f7-timeline-item date="1">...</f7-timeline-item>
-                            <f7-timeline-item date="30">...</f7-timeline-item>
-                        </f7-timeline-month>
-                        <!-- Another Month -->
-                        <f7-timeline-month title="December">
-                            <f7-timeline-item date="1">...</f7-timeline-item>
-                            <f7-timeline-item date="31">...</f7-timeline-item>
-                        </f7-timeline-month>
-                    </f7-timeline-year>
 
-                    <!-- Another Year -->
-                    <f7-timeline-year title="2017">
-                        <f7-timeline-month title="January">
-                            <f7-timeline-item date="1">...</f7-timeline-item>
-                            <f7-timeline-item date="30">...</f7-timeline-item>
-                        </f7-timeline-month>
-                    </f7-timeline-year>
-                </f7-timeline>
             </f7-view>
             <f7-view id="setting" tab>
                 <f7-navbar>
@@ -212,13 +233,23 @@
 
     </div>
 </template>
-<style scoped>
+<style>
     .navbar-inner a {
         color: #929292
     }
 
     .navbar-inner .center {
         color: #007aff
+    }
+
+    #timeline i.btn-record{
+        margin-right: 10px;
+        vertical-align: bottom;
+    }
+    .t-center{
+        width: 200px;
+        text-align: center;
+        margin: 0 auto;
     }
 </style>
 <script type="text/babel">
@@ -235,7 +266,11 @@
             },
             doSomething(){
                 console.log("OK");
+            },
+            onActionClick(){
+                console.log("action click");
             }
+
     },
     computed: {
         title()
